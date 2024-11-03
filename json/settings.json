@@ -1,0 +1,22 @@
+{
+    "database": {
+      "host": "localhost",
+      "user": "infonomics_infopos",
+      "password": "infonomics_infopos",
+      "database": "infonomics_smsgw",
+      "port":3306
+    },
+    "sms_teleinfo":{
+      "username": "teleinfo",
+      "password": "infonomi"
+    },
+    "sms_telebran":{
+      "username": "telebran",
+      "password": "infonomi"
+    }
+
+
+    
+  
+  }
+  

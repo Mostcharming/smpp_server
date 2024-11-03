@@ -1,0 +1,13 @@
+{
+  "SMS_GTEMP": {
+    "body": "{{message}}"
+  },
+  "TEST": {
+    "subject": "TEST",
+    "body": "{{message}}"
+  },
+  "OTP": {
+    "subject": "OTP",
+    "body": "Here is your OTP {{OTP}}"
+  }
+}
