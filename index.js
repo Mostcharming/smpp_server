@@ -1,5 +1,6 @@
 const dotenv = require('dotenv')
 const https = require('https')
+const fs = require('fs')
 
 process.on('uncaughtException', err => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...')
