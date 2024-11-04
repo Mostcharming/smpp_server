@@ -2,6 +2,6 @@ const express = require('express')
 const router = express.Router()
 const hollatagController = require('./controller.js')
 
-router.get('/', hollatagController.callback)
+router.post('/', hollatagController.callback)
 
 module.exports = router

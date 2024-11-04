@@ -21,10 +21,10 @@ const smppPort = process.env.SMPP_PORT || 2775
 // })
 const sslOptions = {
   key: fs.readFileSync(
-    '/home/infonomics/ssl/keys/e5710_c3db1_59de9a13fed370ad386eb0c5a3d44630.key'
+    '/home/infonomics/ssl/keys/dc7af_3f72b_1734479999_dcd2fd960d0a899115679ccaf0294bf2.key'
   ),
   cert: fs.readFileSync(
-    '/home/infonomics/ssl/certs/infonomics_ng_e5710_c3db1_1727913599_93e87fe0a9e687882623ae9305c4d146.crt'
+    '/home/infonomics/ssl/certs/infonomics_ng_dc7af_3f72b_1734479999_dcd2fd960d0a899115679ccaf0294bf2.crt'
   )
 }
 
