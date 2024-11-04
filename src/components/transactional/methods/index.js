@@ -5,16 +5,8 @@ class NotifyProcess {
   constructor () {}
 
   async init () {
-    this.setting = JSON.parse(
-      fs.readFileSync(
-        '/home/infonomics/public_html/sms_node/json/settings.json'
-      )
-    )
-    this.templates = JSON.parse(
-      fs.readFileSync(
-        '/home/infonomics/public_html/sms_node/json/templates.json'
-      )
-    )
+    this.setting = JSON.parse(fs.readFileSync('./json/settings.json'))
+    this.templates = JSON.parse(fs.readFileSync('./json/templates.json'))
   }
 
   async prevConfiguration () {
