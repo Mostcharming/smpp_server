@@ -21,7 +21,7 @@ const smppPort = process.env.SMPP_PORT || 2775
 // })
 const sslOptions = {
   key: fs.readFileSync(
-    '/home/infonomics/ssl/keys/dc7af_3f72b_1734479999_dcd2fd960d0a899115679ccaf0294bf2.key'
+    '/home/infonomics/ssl/keys/dc7af_3f72b_66ea18e4aafd4eeb88cc7542815245be.key'
   ),
   cert: fs.readFileSync(
     '/home/infonomics/ssl/certs/infonomics_ng_dc7af_3f72b_1734479999_dcd2fd960d0a899115679ccaf0294bf2.crt'
