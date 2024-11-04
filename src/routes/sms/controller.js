@@ -21,10 +21,15 @@ const sendNotification = async (req, res, next) => {
       true,
       callback_url
     )
+    const responseString = response[0]
+    const [receiverNumber, messageUUID] = responseString.split(',')
 
     res.status(200).json({
       status: 'success',
-      data: response
+      data: {
+        destination_addr: receiverNumber,
+        message_id: messageUUID
+      }
     })
   } catch (error) {
     res.status(500).json({

@@ -39,7 +39,10 @@ class Sms extends NotifyProcess {
     payload.append('from', this.from)
     payload.append('msg', this.finalMessage)
     payload.append('to', this.toAddress)
-    payload.append('callback_url', 'https://url/')
+    payload.append(
+      'callback_url',
+      'https://gatewayapi.infonomics.ng/callback/hollatag'
+    )
     payload.append('enable_msg_id', 'TRUE')
     payload.append('message_uuid', messageUuid)
     payload.append('type', '0')
@@ -73,7 +76,10 @@ class Sms extends NotifyProcess {
     payload.append('from', this.from)
     payload.append('msg', this.finalMessage)
     payload.append('to', this.toAddress)
-    payload.append('callback_url', 'https://url/')
+    payload.append(
+      'callback_url',
+      'https://gatewayapi.infonomics.ng/callback/hollatag'
+    )
     payload.append('enable_msg_id', 'TRUE')
     payload.append('message_uuid', uuidv4())
     payload.append('type', '0')
