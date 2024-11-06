@@ -32,7 +32,7 @@ https.createServer(sslOptions, app).listen(port, () => {
   console.log(`App running on port ${port}...`)
 })
 
-startSMPPServer(smppPort)
+//startSMPPServer(smppPort)
 
 process.on('unhandledRejection', err => {
   console.log('UNHANDLED REJECTION! 💥 Shutting down...')
