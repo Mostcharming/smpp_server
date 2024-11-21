@@ -14,7 +14,8 @@ class Sms extends NotifyProcess {
       const methodName = this.service
       const methods = {
         sms_teleinfo: this.sendInfoTeleinfo.bind(this),
-        sms_telebran: this.sendInfoTelebran.bind(this)
+        sms_telebran: this.sendInfoTelebran.bind(this),
+        sms_nsl: this.sendInfoNsl.bind(this)
       }
       const methodFunction = methods[methodName]
       if (typeof methodFunction === 'function') {
@@ -99,6 +100,38 @@ class Sms extends NotifyProcess {
         error.response ? error.response.data : error.message
       )
       throw new Error('Failed to send SMS')
+    }
+  }
+
+  async sendInfoNsl() {
+    const general = this.setting;
+    const url = 'https://app.9bits.net:9020/ng/v1/sendsms';
+    const messageUuid = uuidv4();
+
+    const payload = {
+      from: this.from,
+      to: this.toAddress,
+      content: this.finalMessage,
+      exec_time: '',
+      delivery_report: true
+    };
+
+    const headers = {
+      Authorization: `Bearer ${general.sms_nsl.api_token}`,
+      'Content-Type': 'application/json'
+    };
+
+    try {
+      const response = await axios.post(url, payload, { headers });
+      this.messageUuid = messageUuid;
+      this.response = response;
+      return response.data;
+    } catch (error) {
+      console.error(
+        'Error sending SMS via NSL:',
+        error.response ? error.response.data : error.message
+      );
+      throw new Error('Failed to send SMS via NSL');
     }
   }
 }
