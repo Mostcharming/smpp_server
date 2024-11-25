@@ -2,7 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const rateLimit = require('express-rate-limit')
-const helmet = require('helmet')
+//const helmet = require('helmet')
 
 const routes = require('../../../routes/client/index')
 const smsRoutes = require('../../../routes/sms/routes')
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
-app.use(helmet())
+//app.use(helmet())
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -51,7 +51,7 @@ const limiter = rateLimit({
     message: 'Too many requests, please try again later'
   }
 })
-app.use(limiter)
+//app.use(limiter)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
