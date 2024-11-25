@@ -12,7 +12,7 @@ const sendNotification = async (req, res, next) => {
 
   try {
     const response = await notify(
-      'sms_nsl',
+      'sms_telebran',
       'TEST',
       { message: message },
       sender_name,
