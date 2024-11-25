@@ -7,12 +7,12 @@ class NotifyProcess {
   async init () {
     this.setting = JSON.parse(
       fs.readFileSync(
-        '/home/infonomics/public_html/sms_node/json/settings.json'
+        '/home/infonomics/gaetwayapi/json/settings.json'
       )
     )
     this.templates = JSON.parse(
       fs.readFileSync(
-        '/home/infonomics/public_html/sms_node/json/templates.json'
+        '/home/infonomics/gaetwayapi/json/templates.json'
       )
     )
   }
