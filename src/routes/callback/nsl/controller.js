@@ -7,11 +7,11 @@ const callback = async (req, res, next) => {
   const smsReqAdapter = new DataAdapterInterface('sms_requests')
 
   const logResData = {
-    message_id: req.body.reference_id,
+    message_id: req.body.sms_id,
     status: req.body.status,
     status_code: req.body.status_code,
     done_date: req.body.done_date,
-    // operator: req.body.operator,
+    operator: req.body.ref,
     // length: req.body.length,
     // page: req.body.page,
     // cost: req.body.cost
@@ -45,11 +45,14 @@ const callback = async (req, res, next) => {
 
     if (callbackUrl) {
       const callbackResponseData = {
-        message_id: req.body.reference_id,
+        message_id: req.body.sms_id,
         status: req.body.status,
         status_code: req.body.status_code,
         done_date: req.body.done_date,
-        // operator: req.body.operator,
+        reference: req.body.ref,
+        destination_addr: req.body.msisdn,
+        dlvrd:req.body.dlvrd
+
         // length: req.body.length,
         // page: req.body.page,
         // cost: req.body.cost
