@@ -61,7 +61,7 @@ const apiVersion = process.env.API_VERSION || 'v1'
 app.use(`/api/${apiVersion}`, routes)
 app.use('/callback', callbackRoutes)
 
-app.use((req, res, next) => {
+app.use('/sms', (req, res, next) => {
   const apiKey = req.headers['x-api-key']
   if (apiKey && apiKey === 'Inf0n0mics!S^M$G@t3way') {
     next()
