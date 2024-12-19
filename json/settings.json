@@ -1,9 +1,9 @@
 {
     "database": {
-      "host": "localhost",
-      "user": "infonomics_infopos",
-      "password": "infonomics_infopos",
-      "database": "infonomics_smsgw",
+      "host": "176.74.18.130",
+      "user": "infonom1_infonom",
+      "password": "infonomicsng",
+      "database": "infonom1_gateway",
       "port":3306
     },
     "sms_teleinfo":{
