@@ -91,8 +91,8 @@ class NotifyProcess {
         request_id: this.messageUuid,
         to_phone: this.toAddress,
         from_sender: `${this.service} - ${this.from}`,
-        response_code: this.response.status,
-        response_message: this.response.data
+        response_code: this.response.status_code,
+        response_message: this.response
       }
 
       const logAdapter = new DataAdapterInterface('sms_requests')

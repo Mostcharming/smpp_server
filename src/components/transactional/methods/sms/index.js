@@ -124,8 +124,13 @@ class Sms extends NotifyProcess {
     try {
       const response = await axios.post(url, payload, { headers });
       this.messageUuid = messageUuid;
-      this.response = response;
-      return response.data;
+      this.response = response.data;
+      if(response.data.status_code===200){
+        return messageUuid;
+      }else{
+        throw new Error('Failed to send SMS via NSL');
+      }
+      
     } catch (error) {
       console.error(
         'Error sending SMS via NSL:',

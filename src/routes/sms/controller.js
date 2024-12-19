@@ -29,18 +29,18 @@ const sendNotification = async (req, res, next) => {
       true,
       callback_url
     );
-    const responseString = response[0];
-    const [receiverNumber, messageUUID] = responseString.split(',');
 
     res.status(200).json({
       status: 'success',
+
       data: {
-        destination_addr: receiverNumber,
-        message_id: messageUUID,
+        destination_addr: destination_addr,
+        message_id: response[0],
         delivery_status:'DELIVERED'
       }
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({
       status: 'error',
       message: 'Failed to send notification'
