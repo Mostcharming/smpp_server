@@ -32,7 +32,7 @@ const callback = async (req, res, next) => {
     await logResAdapter.create(logResData, requiredField)
 
     const smsRequest = await smsReqAdapter.findOne({
-      request_id: req.body.message_id
+      request_id: req.body.sms_id
     })
 
     if (!smsRequest) {
