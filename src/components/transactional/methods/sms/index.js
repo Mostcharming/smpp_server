@@ -24,7 +24,7 @@ class Sms extends NotifyProcess {
           await this.createLogs('sms')
           return response
         } catch (e) {
-          console.error('Mail error:', e.message)
+          throw new Error(e.message)
         }
       }
     }
@@ -125,6 +125,7 @@ class Sms extends NotifyProcess {
       const response = await axios.post(url, payload, { headers });
       this.messageUuid = messageUuid;
       this.response = response.data;
+      
       if(response.data.status_code===200){
         return messageUuid;
       }else{
@@ -136,7 +137,7 @@ class Sms extends NotifyProcess {
         'Error sending SMS via NSL:',
         error.response ? error.response.data : error.message
       );
-      throw new Error('Failed to send SMS via NSL');
+      throw new Error(error.response ? error.response.data : error.message);
     }
   }
 }
