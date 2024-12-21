@@ -105,7 +105,7 @@ class Sms extends NotifyProcess {
 
   async sendInfoNsl() {
     const general = this.setting;
-    const url = 'https://app.9bits.net:9020/ng/v1/sendsms';
+    const url = 'https://app.9bits.net:2096/ng/v1/sendsms';
     const messageUuid = uuidv4();
 
     const payload = {
