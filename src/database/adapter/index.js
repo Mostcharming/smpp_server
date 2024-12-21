@@ -86,42 +86,58 @@ class DataAdapterInterface {
     }
   }
 
-  async findOne (filter) {
+  async findOne(filter) {
     try {
-      const validColumns = await this.getValidColumns()
-      const filterConditions = []
-      const values = []
-
+      const validColumns = await this.getValidColumns();
+      const filterConditions = [];
+      const values = [];
+  
       for (const key in filter) {
         if (filter.hasOwnProperty(key)) {
-          const snakeKey = this.toSnakeCase(key)
-          if (!validColumns.includes(snakeKey)) {
-            throw new Error(
-              `Column '${snakeKey}' does not exist in table '${this.tableName}'`
-            )
+          const snakeKey = this.toSnakeCase(key);
+  
+          // Check if it's a JSON query (e.g., reference_id in response_message)
+          if (snakeKey.includes('.')) {
+            const [jsonColumn, jsonKey] = snakeKey.split('.');
+            if (!validColumns.includes(jsonColumn)) {
+              throw new Error(
+                `Column '${jsonColumn}' does not exist in table '${this.tableName}'`
+              );
+            }
+            filterConditions.push(
+              `JSON_EXTRACT(${jsonColumn}, '$.${jsonKey}') = ?`
+            );
+            values.push(filter[key]);
+          } else {
+            if (!validColumns.includes(snakeKey)) {
+              throw new Error(
+                `Column '${snakeKey}' does not exist in table '${this.tableName}'`
+              );
+            }
+            filterConditions.push(`${snakeKey} = ?`);
+            values.push(filter[key]);
           }
-          filterConditions.push(`${snakeKey} = ?`)
-          values.push(filter[key])
         }
       }
-
+  
       if (filterConditions.length === 0) {
-        throw new Error('No valid filter conditions provided for findOne.')
+        throw new Error('No valid filter conditions provided for findOne.');
       }
-
+  
       const query = `SELECT * FROM ${
         this.tableName
-      } WHERE ${filterConditions.join(' AND ')} LIMIT 1`
-
-      const conn = await pool.getConnection()
-      const rows = await conn.query(query, values)
-      conn.release()
-
-      return rows.length > 0 ? rows[0] : null
+      } WHERE ${filterConditions.join(' AND ')} LIMIT 1`;
+  
+      const conn = await pool.getConnection();
+      const rows = await conn.query(query, values);
+      conn.release();
+  
+      return rows.length > 0 ? rows[0] : null;
     } catch (err) {
-      throw err
+      throw err;
     }
   }
+  
 
   async getValidColumns () {
     const query = `SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = ?`

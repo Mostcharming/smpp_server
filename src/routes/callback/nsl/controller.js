@@ -4,17 +4,15 @@ const axios = require('axios')
 const callback = async (req, res, next) => {
 
   const logResAdapter = new DataAdapterInterface('sms_callbacks')
-  const smsReqAdapter = new DataAdapterInterface('sms_requests')
+  const smsResAdapter = new DataAdapterInterface('sms_responses')
 
   const logResData = {
-    message_id: req.body.smsc_id,
+    message_id: req.body.reference_id,
     status: req.body.stat,
     status_code: 200,
     done_date: req.body.done_date,
     operator: req.body.sub,
-    // length: req.body.length,
-    // page: req.body.page,
-    // cost: req.body.cost
+  
   }
 
   const requiredField = [
@@ -22,18 +20,16 @@ const callback = async (req, res, next) => {
     'status',
     'status_code',
     'done_date',
-    // 'operator',
-    // 'length',
-    // 'page',
-    // 'cost'
+  
   ]
 
   try {
     await logResAdapter.create(logResData, requiredField)
 
-    const smsRequest = await smsReqAdapter.findOne({
-      request_id: req.body.sms_id
-    })
+    const smsRequest = await smsResAdapter.findOne({
+      'response_message.reference_id': req.body.reference_id,
+    });
+    
 
     if (!smsRequest) {
       return res
@@ -45,17 +41,17 @@ const callback = async (req, res, next) => {
 
     if (callbackUrl) {
       const callbackResponseData = {
-        message_id: req.body.smsc_id,
+        message_id: smsRequest.reference_id,
         status: req.body.stat,
         status_code: 200,
         done_date: req.body.done_date,
-        reference: req.body.sub,
+        done_time: req.body.dt,
         destination_addr: req.body.msisdn,
-        dlvrd:req.body.dlvrd
+        dlvrd:req.body.dlvrd,
+        sub:req.body.sub,
+        text:req.body.text,
 
-        // length: req.body.length,
-        // page: req.body.page,
-        // cost: req.body.cost
+      
       }
 
       await axios.post(callbackUrl, callbackResponseData)
