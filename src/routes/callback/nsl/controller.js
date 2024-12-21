@@ -5,6 +5,7 @@ const callback = async (req, res, next) => {
 
   const logResAdapter = new DataAdapterInterface('sms_callbacks')
   const smsResAdapter = new DataAdapterInterface('sms_responses')
+  const smsReqAdapter = new DataAdapterInterface('sms_requests')
 
   const logResData = {
     message_id: req.body.reference_id,
@@ -36,12 +37,14 @@ const callback = async (req, res, next) => {
         .status(404)
         .json({ message: 'No corresponding SMS request found' })
     }
-
-    const callbackUrl = smsRequest.callback_url
+    const smsRe = await smsReqAdapter.findOne({
+      request_id: smsRequest.request_id,
+    });
+    const callbackUrl = smsRe.callback_url
 
     if (callbackUrl) {
       const callbackResponseData = {
-        message_id: smsRequest.reference_id,
+        message_id: smsRequest.request_id,
         status: req.body.stat,
         status_code: 200,
         done_date: req.body.done_date,
@@ -49,7 +52,7 @@ const callback = async (req, res, next) => {
         destination_addr: req.body.msisdn,
         dlvrd:req.body.dlvrd,
         sub:req.body.sub,
-        text:req.body.text,
+        text:req.body.text
 
       
       }
