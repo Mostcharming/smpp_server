@@ -35,7 +35,7 @@ const sendNotification = async (req, res, next) => {
       data: {
         destination_addr: destination_addr,
         message_id: response[0],
-        delivery_status:'DELIVERED'
+        delivery_status:'Processing..'
       }
     });
   } catch (error) {
