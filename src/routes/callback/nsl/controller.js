@@ -18,9 +18,9 @@ const callback = async (req, res, next) => {
 
   const requiredField = [
     'message_id',
-    'status',
+
     'status_code',
-    'done_date',
+  
   
   ]
 
@@ -46,7 +46,6 @@ const callback = async (req, res, next) => {
       const callbackResponseData = {
         message_id: smsRequest.request_id,
         status: req.body.stat,
-        status_code: 200,
         done_date: req.body.done_date,
         done_time: req.body.dt,
         destination_addr: req.body.msisdn,
