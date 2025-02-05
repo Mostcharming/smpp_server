@@ -6,7 +6,7 @@ const callback = async (req, res, next) => {
   const logResAdapter = new DataAdapterInterface('sms_callbacks')
   const smsResAdapter = new DataAdapterInterface('sms_responses')
   const smsReqAdapter = new DataAdapterInterface('sms_requests')
-
+console.log(req.body)
   const logResData = {
     message_id: req.body.reference_id,
     status: req.body.stat,

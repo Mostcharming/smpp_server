@@ -123,6 +123,7 @@ class Sms extends NotifyProcess {
 
     try {
       const response = await axios.post(url, payload, { headers });
+      console.log(response)
       this.messageUuid = messageUuid;
       this.response = response.data;
       
