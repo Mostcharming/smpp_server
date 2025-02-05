@@ -4,9 +4,7 @@ const axios = require('axios')
 const callback = async (req, res, next) => {
 
   const logResAdapter = new DataAdapterInterface('sms_callbacks')
-  const smsResAdapter = new DataAdapterInterface('sms_responses')
-  const smsReqAdapter = new DataAdapterInterface('sms_requests')
-console.log(req.body)
+
   const logResData = {
     message_id: req.body.reference_id,
     status: req.body.stat,
@@ -22,11 +20,7 @@ console.log(req.body)
   ]
 
   try {
-    await logResAdapter.create(logResData, requiredField)
-
-    const smsRequest = await smsResAdapter.findOne({
-      'response_message.reference_id': req.body.reference_id,
-    });
+  
     
 
    // if (!smsRequest) {
@@ -41,7 +35,7 @@ console.log(req.body)
 
     if (callbackUrl) {
       const callbackResponseData = {
-        message_id: smsRequest.request_id,
+        message_id: req.body.reference_id,
         status: req.body.stat,
         done_date: req.body.done_date,
         done_time: req.body.dt,
@@ -55,6 +49,8 @@ console.log(req.body)
 
       await axios.post(callbackUrl, callbackResponseData)
     }
+
+    await logResAdapter.create(logResData, requiredField)
 
     return res
       .status(201)
