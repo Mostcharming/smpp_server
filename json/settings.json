@@ -1,10 +1,10 @@
 {
     "database": {
-      "host": "176.74.18.130",
-      "user": "infonom1_infonom",
-      "password": "infonomicsng",
+      "host": "db-mysql-nyc3-16277-do-user-18600324-0.k.db.ondigitalocean.com",
+      "user": "doadmin",
+      "password": "AVNS_8KV8Ti0Ifu78mXK7o5S hide",
       "database": "infonom1_gateway",
-      "port":3306
+      "port": 25060
     },
     "sms_teleinfo":{
       "username": "teleinfo",
