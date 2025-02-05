@@ -128,7 +128,7 @@ class Sms extends NotifyProcess {
       this.response = response.data;
       
       if(response.data.status_code===200){
-        return messageUuid;
+        return response.data.reference_id;
       }else{
         throw new Error('Failed to send SMS via NSL');
       }
