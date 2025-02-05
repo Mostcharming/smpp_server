@@ -29,14 +29,14 @@ const callback = async (req, res, next) => {
     });
     
 
-    if (!smsRequest) {
-      return res
-        .status(404)
-        .json({ message: 'No corresponding SMS request found' })
-    }
-    const smsRe = await smsReqAdapter.findOne({
-      request_id: smsRequest.request_id,
-    });
+   // if (!smsRequest) {
+  //    return res
+  //      .status(404)
+  //      .json({ message: 'No corresponding SMS request found' })
+  //  }
+  //  const smsRe = await smsReqAdapter.findOne({
+   //   request_id: smsRequest.request_id,
+  //  });
     const callbackUrl = 'https://api.int.cryun.com/receive/telebrand/delivery'
 
     if (callbackUrl) {
