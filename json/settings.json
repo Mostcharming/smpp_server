@@ -8,7 +8,7 @@
     },
     "sms_teleinfo":{
       "username": "teleinfo",
-      "password": "infonomi"
+      "password": "same as telebran"
     },
     "sms_telebran":{
       "username": "telebran",
