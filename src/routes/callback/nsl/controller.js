@@ -18,10 +18,7 @@ const callback = async (req, res, next) => {
 
   const requiredField = [
     'message_id',
-
     'status_code',
-  
-  
   ]
 
   try {
@@ -40,7 +37,7 @@ const callback = async (req, res, next) => {
     const smsRe = await smsReqAdapter.findOne({
       request_id: smsRequest.request_id,
     });
-    const callbackUrl = smsRe.callback_url
+    const callbackUrl = 'https://api.int.cryun.com/receive/telebrand/delivery'
 
     if (callbackUrl) {
       const callbackResponseData = {
