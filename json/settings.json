@@ -2,7 +2,7 @@
     "database": {
       "host": "db-mysql-nyc3-16277-do-user-18600324-0.k.db.ondigitalocean.com",
       "user": "doadmin",
-      "password": "AVNS_8KV8Ti0Ifu78mXK7o5S hide",
+      "password": "AVNS_8KV8Ti0Ifu78mXK7o5S",
       "database": "infonom1_gateway",
       "port": 25060
     },
